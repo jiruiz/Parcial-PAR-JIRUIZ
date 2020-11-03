@@ -49,20 +49,20 @@ def recuperarVacacionesPendientes(archivo, legajos):
     next(archivo1CSV)
 
     busqueda = input("ingrese numero de legajo a buscar: ")
+
     empleado = next(archivo1CSV, None)
     legajo = next(archivoLegajosCSV, None)
-    diasRestantes = 0
-    contador = 0
-    numLegajo = empleado[0]
-    apellidoEmple = empleado[1]
-    nombreEmple = empleado[2]
-    totalVacaciones = empleado[3]
     while (empleado):
-
+        diasRestantes = 0
+        contador = 0
+        numLegajo = empleado[0]
+        apellidoEmple = empleado[1]
+        nombreEmple = empleado[2]
+        totalVacaciones = empleado[3]
 
         # print(f"{empleado}")
         # print(f"{legajo}")
-
+        print(f"legajo Nro: {empleado[0]} ,empleado: {empleado[1]}, {empleado[2]}")
         # if empleado or legajo != empleado[0]:
 
         restante = 0
@@ -71,15 +71,14 @@ def recuperarVacacionesPendientes(archivo, legajos):
 
                 contador+=1
                 restante = int(totalVacaciones)-contador
-
-
+            linea = linea.rstrip('\n')
+            print(f"\ttiene {totalVacaciones} dias de Vacaciones en total, debe {restante}")
+            print("**************************************************************************")
 
 
         legajo = next(archivoLegajosCSV, None)
         empleado = next(archivo1CSV, None)
-    print(f"legajo Nro: {numLegajo} ,empleado: {apellidoEmple}, {nombreEmple}")
-    print(f"\ttiene {totalVacaciones} dias de Vacaciones en total, debe {restante}")
-    print("**************************************************************************")
+
     archivoLegajos.close()
     archivo.close()
 # cantodad de veces que aparece menos los dias
@@ -101,6 +100,7 @@ def main():
             return archivo
             return
         if opcion == "2":
+
             archivo = input("ingrese nombre del archivo a recuperar")
             recuperarVacacionesPendientes(f"{archivo}.csv",LEGAJOS)
         if opcion == "3":
